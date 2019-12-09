@@ -3,18 +3,18 @@
 [ext_resource path="res://ResourceManager/InteractiveLoader.gd" type="Script" id=1]
 [ext_resource path="res://ResourceManager/GradientBackground.tres" type="Gradient" id=2]
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 2 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.5, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0, 0.301961, 0.423529, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 width = 1024
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0352941, 0.419608, 0.670588, 1 )
 border_width_top = 2
 border_width_bottom = 2
@@ -25,7 +25,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.647059, 0.647059, 0.647059, 0.117647 )
 border_width_left = 3
 border_width_top = 3
@@ -52,13 +52,13 @@ anchor_bottom = 1.0
 [node name="Background" type="TextureRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 expand = true
 
 [node name="Background" type="TextureRect" parent="Control/Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 6 )
+texture = SubResource( 3 )
 expand = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
@@ -69,8 +69,8 @@ margin_left = 10.0
 margin_top = -40.0
 margin_right = -10.0
 margin_bottom = -10.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 value = 50.0
 percent_visible = false
 

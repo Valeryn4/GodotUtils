@@ -10,6 +10,7 @@ signal update_progress(val)
 export(PoolStringArray) var path_pull : PoolStringArray = []
 export(bool) var enable_emit_update = false
 export(bool) var enable_print_log = true
+export(bool) var enable_background = true
 
 var debug = false
 
@@ -28,6 +29,8 @@ var end_pos_x
 var marning_r
 
 func _ready():
+	if not enable_background :
+		$Control/Background.hide()
 	set_process(false)
 	self.connect("loading_error", self, "_print_log")
 	
@@ -78,11 +81,12 @@ func _update_progress(val) :
 		emit_signal("update_progress", val)
 	$Control/ProgressBar.value = val
 	
-	var progress_x = end_pos_x * (progress / 100) + start_pos_x
-	offset_x = progress_x
-	background_inner_node.rect_position.x = offset_x
-	background_inner_node.margin_left = offset_x
-	background_inner_node.margin_right = marning_r + offset_x
+	if enable_background :
+		var progress_x = end_pos_x * (progress / 100) + start_pos_x
+		offset_x = progress_x
+		background_inner_node.rect_position.x = offset_x
+		background_inner_node.margin_left = offset_x
+		background_inner_node.margin_right = marning_r + offset_x
 	
 	
 	pass

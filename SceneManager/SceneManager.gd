@@ -5,7 +5,6 @@ export(PackedScene) var transaction_pkg = preload("res://TransactionScene/Transa
 var current_scene : Node = null
 var root = null
 
-const interactive_loader_pkg = preload("res://ResourceManager/InteractiveLoader.tscn")
 
 func _ready():
     root = get_tree().get_root()
@@ -25,7 +24,7 @@ func goto_scene_instance(scene : Node, enable_transaction = true) :
 ###########
 
 func _deferred_goto_scene_interactive_loader(path, enable_transaction = true) :
-	var interactive_loader = interactive_loader_pkg.instance()
+	var interactive_loader = ResourceManager.create_loader()
 	interactive_loader.connect("loading_error", self, "_error_interactive")
 	interactive_loader.connect("ready", self, "_interactive_loading_ready", [interactive_loader, path, enable_transaction])
 	_deferred_goto_scene_instance(interactive_loader, enable_transaction)
