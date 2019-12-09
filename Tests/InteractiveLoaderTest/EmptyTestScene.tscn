@@ -3,12 +3,21 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-
+const path_res = \"res://Tests/InteractiveLoaderTest/TestScene1.tscn\"
 func _ready():
-	SceneManager.goto_scene_interactive_loader(\"res://Tests/InteractiveLoaderTest/TestScene1.tscn\", true)
-	
+	self.call_deferred(\"_deferred_test\")
 	pass # Replace with function body.
 
+func _deferred_test() :
+	yield(get_tree().create_timer(1.0),\"timeout\")
+	var res = ResourceManager.load_resource(path_res)
+	
+	yield(get_tree().create_timer(1.0),\"timeout\")
+	res = ResourceManager.load_resource(path_res, true)
+	
+	yield(get_tree().create_timer(1.0),\"timeout\")
+	SceneManager.goto_scene_interactive_loader(path_res, true)
+	
 "
 
 [node name="EmptyTestScene" type="Node2D"]
